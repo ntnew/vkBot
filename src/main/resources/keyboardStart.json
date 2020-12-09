@@ -1,0 +1,51 @@
+{
+  "one_time": false,
+  "buttons": [
+    [
+      {
+        "action": {
+          "type": "text",
+          "payload": "{\"button\": \"1\"}",
+          "label": "Меню"
+        },
+        "color": "primary"
+      },
+      {
+        "action": {
+          "type": "text",
+          "payload": "{\"button\": \"2\"}",
+          "label": "Вакансии"
+        },
+        "color": "primary"
+      }
+    ],
+    [
+      {
+        "action": {
+          "type": "text",
+          "payload": "{\"button\": \"2\"}",
+          "label": "Акции"
+        },
+        "color": "primary"
+      },
+      {
+        "action": {
+          "type": "text",
+          "payload": "{\"button\": \"2\"}",
+          "label": "Вопрос/отзыв"
+        },
+        "color": "primary"
+      }
+    ],
+    [
+      {
+        "action": {
+          "type": "text",
+          "payload": "{\"button\": \"2\"}",
+          "label": "Забронировать стол"
+        },
+        "color": "positive"
+      }
+    ]
+  ]
+}
