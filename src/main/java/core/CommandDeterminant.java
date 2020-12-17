@@ -24,10 +24,8 @@ public class CommandDeterminant {
      * Обработка команд
      */
     public static Command getCommand(Collection<Command> commands, Message message) {
-        String body = message.getText().toLowerCase();
-
         for (Command command : commands) {
-            if (command.name.equals(body)) {
+            if (command.getName().equalsIgnoreCase((message.getText()))) {
                 return command;
             }
         }
@@ -42,19 +40,16 @@ public class CommandDeterminant {
             new VKManager().sendMessage(getReserveStepMessage(2), message.getFromId(), false);
             reserveQueue.remove(message.getFromId() + "res2");
             reserveQueue.add(message.getFromId() + "res3");
-            /// TODO: 04.10.2020 сохранить колво персон
             writeLetter(message.getFromId().toString(), "Количество персон: " + message.getText() + ";\n");
         } else if (reserveQueue.contains(message.getFromId() + "res3")) {
             new VKManager().sendMessage(getReserveStepMessage(3), message.getFromId(), false);
             reserveQueue.remove(message.getFromId() + "res3");
             reserveQueue.add(message.getFromId() + "res4");
-            /// TODO: 04.10.2020 сохранить время
             writeLetter(message.getFromId().toString(), "Время прибытия гостей: " + message.getText() + ";\n");
         } else if (reserveQueue.contains(message.getFromId() + "res4")) {
             new VKManager().sendMessage(getReserveStepMessage(4), message.getFromId(), false);
             reserveQueue.remove(message.getFromId() + "res4");
             reserveQueue.add(message.getFromId() + "res5");
-            /// TODO: 04.10.2020 сохранить телефон
             writeLetter(message.getFromId().toString(), "Телефон: " + message.getText() + ";\n");
         } else if (reserveQueue.contains(message.getFromId() + "res5")) {
             writeLetter(message.getFromId() + "", "Имя: " + message.getText() + ";\n");
@@ -63,12 +58,10 @@ public class CommandDeterminant {
             new Send().sendKeyboard("keyboardConfirm.json", message.getFromId());
             reserveQueue.remove(message.getFromId() + "res5");
             reserveQueue.add(message.getFromId() + "res6");
-            /// TODO: 04.10.2020 имя сохр
         } else if (reserveQueue.contains(message.getFromId() + "res6") && message.getText().equals("Да")) {
             new VKManager().sendMessage(getReserveStepMessage(6), message.getFromId(), false);
             new Send().sendKeyboard("keyboardStart.json", message.getFromId());
             reserveQueue.remove(message.getFromId() + "res6");
-            /// TODO: 04.10.2020 отправить письмо
             SendLetter sendLetter = new SendLetter(message.getFromId());
             sendLetter.start();
         } else if (reserveQueue.contains(message.getFromId() + "res6") && message.getText().equals("Нет")) {

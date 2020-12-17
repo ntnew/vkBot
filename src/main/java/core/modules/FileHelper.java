@@ -12,13 +12,11 @@ import java.util.List;
 import static core.modules.Reader.programPath;
 
 public class FileHelper {
+    private static String pathToLetters = "\\src\\main\\Reservers\\";
 
     public static void createNewFile(String fileName) {
         try {
-            // Возьмите файл
-            File f = new File(programPath + "\\src\\main\\Reservers\\" + fileName + ".txt");
-            //Создайте новый файл
-            // Убедитесь, что он не существует
+            File f = new File(getFileNamePath(fileName));
             if (f.createNewFile())
                 System.out.println("File created");
             else
@@ -30,7 +28,7 @@ public class FileHelper {
 
     public static void writeLetter(String fileName, String data) {
         try {
-            Files.write(Paths.get(programPath + "\\src\\main\\Reservers\\" + fileName + ".txt"),
+            Files.write(Paths.get(getFileNamePath(fileName)),
                     data.getBytes(StandardCharsets.UTF_8),
                     StandardOpenOption.APPEND);
         } catch (IOException e) {
@@ -41,7 +39,7 @@ public class FileHelper {
     public static String readLetter(String fileName) {
         List<String> lines = new ArrayList<>();
         try {
-            lines = Files.readAllLines(Paths.get(programPath + "\\src\\main\\Reservers\\" + fileName + ".txt"),
+            lines = Files.readAllLines(Paths.get(getFileNamePath(fileName)),
                     StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,10 +49,15 @@ public class FileHelper {
 
     public static void clearLetter(String fileName) {
         try {
-            Files.write(Paths.get(programPath + "\\src\\main\\Reservers\\" + fileName + ".txt"),
+            Files.write(Paths.get(getFileNamePath(fileName)),
                     "".getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    private static String getFileNamePath(String fileName){
+        return programPath + pathToLetters + fileName + ".txt";
     }
 }

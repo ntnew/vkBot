@@ -23,7 +23,6 @@ public class CommandManager {
         commands.add(new Menu("меню"));
         commands.add(new Vacancy("вакансии"));
         commands.add(new Question("вопрос/отзыв"));
-
     }
 
     public static HashSet<Command> getCommands(){

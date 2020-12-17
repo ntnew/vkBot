@@ -12,7 +12,7 @@ import com.vk.api.sdk.objects.messages.Message;
  */
 public abstract class Command {
 
-    public final String name;
+    private final String name;
 
     public Command(String name){
         this.name = name;
@@ -60,5 +60,9 @@ public abstract class Command {
             }
         }
         return false;
+    }
+
+    public String getName() {
+        return name;
     }
 }
