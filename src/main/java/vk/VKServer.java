@@ -14,6 +14,9 @@ public class VKServer {
     static int RECONNECT_TIME = 10000;
     public static VKCore vkCore;
     public static List<String> reserveQueue = new ArrayList<>();
+    public static final String pathToLetters = "/Reserves";
+    public static final String programPath = System.getProperty("user.dir");
+    public static final String resourcesPath = "/Resources";
 
     static {
         try {

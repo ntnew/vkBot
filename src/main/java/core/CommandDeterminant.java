@@ -55,18 +55,18 @@ public class CommandDeterminant {
             writeLetter(message.getFromId() + "", "Имя: " + message.getText() + ";\n");
             new VKManager().sendMessage(getReserveStepMessage(5) + "\n" +
                     readLetter(message.getFromId() + ""), message.getFromId(), false);
-            new Send().sendKeyboard("keyboardConfirm.json", message.getFromId());
+            new Send().sendKeyboard("keyboardConfirm", message.getFromId());
             reserveQueue.remove(message.getFromId() + "res5");
             reserveQueue.add(message.getFromId() + "res6");
         } else if (reserveQueue.contains(message.getFromId() + "res6") && message.getText().equals("Да")) {
             new VKManager().sendMessage(getReserveStepMessage(6), message.getFromId(), false);
-            new Send().sendKeyboard("keyboardStart.json", message.getFromId());
+            new Send().sendKeyboard("keyboardStart", message.getFromId());
             reserveQueue.remove(message.getFromId() + "res6");
             SendLetter sendLetter = new SendLetter(message.getFromId());
             sendLetter.start();
         } else if (reserveQueue.contains(message.getFromId() + "res6") && message.getText().equals("Нет")) {
             new VKManager().sendMessage("Попробуйте заполнить ещё раз", message.getFromId(), false);
-            new Send().sendKeyboard("keyboardStart.json", message.getFromId());
+            new Send().sendKeyboard("keyboardStart", message.getFromId());
             reserveQueue.remove(message.getFromId() + "res6");
             clearLetter(message.getFromId().toString());
         }

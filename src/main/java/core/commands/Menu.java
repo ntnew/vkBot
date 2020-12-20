@@ -2,17 +2,17 @@ package core.commands;
 
 import com.vk.api.sdk.objects.messages.Message;
 import core.Command;
-import core.modules.Reader;
+import core.modules.FileHelper;
 import vk.VKManager;
 
 public class Menu extends Command {
-    public Menu (String name) {
+    public Menu(String name) {
         super(name);
     }
 
-    private String getSaleMessage(){
-        String fileName = "menu.txt";
-        return Reader.readTxtFile(fileName);
+    private String getSaleMessage() {
+        String fileName = "menu";
+        return FileHelper.readTxtFile(fileName);
     }
 
     @Override

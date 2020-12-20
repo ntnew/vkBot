@@ -2,7 +2,7 @@ package core.commands;
 
 import com.vk.api.sdk.objects.messages.Message;
 import core.Command;
-import core.modules.Reader;
+import core.modules.FileHelper;
 import vk.VKManager;
 
 public class Question extends Command {
@@ -12,8 +12,8 @@ public class Question extends Command {
     }
 
     private String getQuestionMessage(){
-        String fileName = "question.txt";
-        return Reader.readTxtFile(fileName);
+        String fileName = "question";
+        return FileHelper.readTxtFile(fileName);
     }
 
     @Override

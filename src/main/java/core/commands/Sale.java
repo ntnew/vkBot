@@ -2,7 +2,7 @@ package core.commands;
 
 import com.vk.api.sdk.objects.messages.Message;
 import core.Command;
-import core.modules.Reader;
+import core.modules.FileHelper;
 import vk.VKManager;
 
 public class Sale extends Command {
@@ -11,8 +11,8 @@ public class Sale extends Command {
     }
 
     private String getSaleMessage(){
-        String fileName = "sale.txt";
-        return Reader.readTxtFile(fileName);
+        String fileName = "sale";
+        return FileHelper.readTxtFile(fileName);
     }
 
     @Override

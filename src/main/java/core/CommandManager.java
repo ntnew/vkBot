@@ -2,14 +2,8 @@ package core;
 
 import core.commands.*;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashSet;
-import java.util.List;
 
-import static core.modules.Reader.programPath;
 
 
 public class CommandManager {

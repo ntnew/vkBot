@@ -2,7 +2,7 @@ package core.commands;
 
 import com.vk.api.sdk.objects.messages.Message;
 import core.Command;
-import core.modules.Reader;
+import core.modules.FileHelper;
 import vk.VKManager;
 
 public class Vacancy extends Command {
@@ -12,8 +12,7 @@ public class Vacancy extends Command {
     }
 
     private String getVacancyMessage(){
-        String fileName = "vacancy.txt";
-        return Reader.readTxtFile(fileName);
+        return FileHelper.readTxtFile("vacancy");
     }
 
     @Override

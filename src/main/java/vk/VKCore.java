@@ -1,10 +1,5 @@
 package vk;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.vk.api.sdk.actions.Market;
-import com.vk.api.sdk.objects.market.*;
-import com.vk.api.sdk.actions.Orders;
 import com.vk.api.sdk.client.TransportClient;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.GroupActor;
@@ -12,16 +7,12 @@ import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
 import com.vk.api.sdk.objects.messages.Message;
-import com.vk.api.sdk.objects.orders.Order;
 import com.vk.api.sdk.queries.messages.MessagesGetLongPollHistoryQuery;
-import core.modules.Reader;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-
-import static vk.VKManager.vkCore;
 
 public class VKCore {
     private VkApiClient vk;
@@ -40,8 +31,8 @@ public class VKCore {
         int groupId;
         String access_token;
         try {
-            prop.load(new FileInputStream("src/main/resources/vkconfig.properties"));
-            groupId = Integer.valueOf(prop.getProperty("groupId"));
+            prop.load(new FileInputStream(VKServer.programPath + VKServer.resourcesPath +"/vkconfig.properties"));
+            groupId = Integer.parseInt(prop.getProperty("groupId"));
             access_token = prop.getProperty("accessToken");
             actor = new GroupActor(groupId, access_token);
 

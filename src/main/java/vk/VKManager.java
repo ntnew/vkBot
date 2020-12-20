@@ -8,7 +8,7 @@ import com.vk.api.sdk.queries.messages.MessagesSendQuery;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import static core.modules.RandomId.setRandomId;
+import static core.modules.Utils.getRandomInt;
 
 /**
  * @author Arthur Kupriyanov
@@ -24,40 +24,30 @@ public class VKManager {
         }
     }
 
-    public void sendMessage(String msg, int peerId, boolean uniqueMsg){
-        if (msg == null){
+    public void sendMessage(String msg, int peerId, boolean uniqueMsg) {
+        if (msg == null) {
             return;
         }
         try {
             vkCore.getVk().messages()
                     .send(vkCore.getActor())
                     .peerId(peerId)
-                    .randomId(uniqueMsg ? generateUniqId(peerId) :setRandomId())
+                    .randomId(uniqueMsg ? generateDateUniqueId(peerId) : getRandomInt())
                     .message(msg)
                     .execute();
         } catch (ApiException | ClientException e) {
             e.printStackTrace();
         }
     }
-    public int generateUniqId(int peerId){
+    /*
+     * Генерация Id на день сообщения, чтобы бот много раз одно и то же не писал
+     */
+    public int generateDateUniqueId(int peerId) {
         Calendar calendar = new GregorianCalendar();
         return peerId + calendar.get(Calendar.DAY_OF_MONTH) + calendar.get(Calendar.MONTH);
     }
 
-    public void sendUniqueMessage(String msg, int peerId){
-        if (msg == null){
-            return;
-        }
-        Calendar calendar = new GregorianCalendar();
-        try {
-            vkCore.getVk().messages().send(vkCore.getActor()).peerId(peerId).randomId(peerId +
-                    calendar.get(Calendar.DAY_OF_MONTH) + calendar.get(Calendar.MONTH) ).message(msg).execute();
-        } catch (ApiException | ClientException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public MessagesSendQuery getSendQuery(){
+    public MessagesSendQuery getSendQuery() {
         return vkCore.getVk().messages().send(vkCore.getActor());
     }
 
