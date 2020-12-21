@@ -26,12 +26,14 @@ public class VKServer {
         }
     }
 
-    public static void main(String[] args) throws NullPointerException, ApiException, InterruptedException {
-
-
+    public static void main(String[] args) {
         System.out.println("Running server...");
         while (true) {
-            Thread.sleep(300);
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             try {
                 Message message = vkCore.getMessage();
                 if (message != null) {
@@ -42,7 +44,19 @@ public class VKServer {
             } catch (ClientException e) {
                 System.out.println("Возникли проблемы");
                 System.out.println("Повторное соединение через " + RECONNECT_TIME / 1000 + " секунд");
-                Thread.sleep(RECONNECT_TIME);
+                try {
+                    Thread.sleep(RECONNECT_TIME);
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
+            } catch (ApiException e) {
+                System.out.println("Возникли проблемы с ApeException");
+                e.printStackTrace();
+                try {
+                    vkCore = new VKCore();
+                } catch (ApiException | ClientException z) {
+                    z.printStackTrace();
+                }
             }
         }
     }
