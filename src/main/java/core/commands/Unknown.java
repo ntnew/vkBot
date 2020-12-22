@@ -16,6 +16,6 @@ public class Unknown extends Command {
 
     @Override
     public void exec(Message message) {
-        new VKManager().sendMessage(FileHelper.readTxtFile("unknown.txt"), message.getFromId(),true);
+        new VKManager().sendMessage(FileHelper.readTxtFile("unknown"), message.getFromId(),true);
     }
 }

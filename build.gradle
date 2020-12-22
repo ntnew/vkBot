@@ -8,7 +8,15 @@ version '1.0'
 repositories {
     mavenCentral()
 }
-
+jar {
+    archiveFileName = "vkBotApi.jar"
+    manifest {
+        attributes('Main-Class': 'vk.VKServer')
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
 dependencies {
     compile 'com.vk.api:sdk:1.0.7'
     compile group: 'javax.mail', name: 'mail', version: '1.5.0-b01'
