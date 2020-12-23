@@ -72,6 +72,20 @@ public class FileHelper {
     }
 
     /*
+     * Прочитать txt с командами
+     */
+    public static  List<String> readCommandFile() {
+        List<String> lines = new ArrayList<>();
+        try {
+            lines = Files.readAllLines(Paths.get(getResourcesPath("commands")),
+                    StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lines;
+    }
+
+    /*
      * Прочитать txt с клавиатурой
      */
     public static String readKeyboardFile(String fileName) {

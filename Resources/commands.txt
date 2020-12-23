@@ -1,0 +1,6 @@
+акции-sale
+меню-menu
+вакансии-vacancy
+вопрос/отзыв-question
+доставка-delivery
+заказать-order

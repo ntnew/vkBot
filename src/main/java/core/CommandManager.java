@@ -13,10 +13,6 @@ public class CommandManager {
         commands.add(new ReserveTable("забронировать стол"));
         commands.add(new Unknown("unknown"));
         commands.add(new Begin("начать"));
-        commands.add(new Sale("акции"));
-        commands.add(new Menu("меню"));
-        commands.add(new Vacancy("вакансии"));
-        commands.add(new Question("вопрос/отзыв"));
     }
 
     public static HashSet<Command> getCommands(){

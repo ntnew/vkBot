@@ -4,6 +4,9 @@ package vk;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.objects.messages.Message;
+import core.CommandManager;
+import core.commands.ReadableCommand;
+import core.modules.FileHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,12 @@ public class VKServer {
 
     public static void main(String[] args) {
         System.out.println("Running server...");
+        //Заполняем команды
+        FileHelper.readCommandFile().forEach(x->{
+            String [] c = x.split("-");
+            CommandManager.addCommand(new ReadableCommand(c[0], c[1]));
+        });
+        //Основной цикл
         while (true) {
             try {
                 Thread.sleep(300);
