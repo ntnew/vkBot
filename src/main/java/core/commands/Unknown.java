@@ -6,7 +6,7 @@ import core.modules.FileHelper;
 import vk.VKManager;
 
 /**
- * @author Arthur Kupriyanov
+ * Класс неизвестной команды
  */
 public class Unknown extends Command {
 

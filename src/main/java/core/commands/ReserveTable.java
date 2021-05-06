@@ -25,6 +25,6 @@ public class ReserveTable extends Command {
     public void exec(Message message) {
         reserveQueue.add(message.getFromId() + "res2");
         new VKManager().sendMessage(getReserveMessage(), message.getFromId(), false);
-        FileHelper.createNewFile(message.getFromId().toString());
+        FileHelper.createNewLetterFile(message.getFromId().toString());
     }
 }

@@ -7,8 +7,7 @@ import com.vk.api.sdk.objects.messages.Message;
  * Abstract class for all executable classes-commands
  * Field {@link #name} identification command,he is called by this name
  *
- * @author Arthur Kupriyanov
- * @version 1.1
+
  */
 public abstract class Command {
 

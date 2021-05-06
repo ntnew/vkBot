@@ -12,8 +12,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import static core.modules.FileHelper.clearLetter;
-import static core.modules.FileHelper.readLetter;
+import static core.modules.FileHelper.clearTxtFile;
+import static core.modules.FileHelper.readLetterTxt;
 
 /*
  * Класс отправки письма
@@ -74,7 +74,7 @@ public class Letter extends Thread {
 
       message.setSubject("Бронирование стола"); // subject line
 
-      message.setText(header + readLetter(userId + "") + foot);
+      message.setText(header + readLetterTxt(userId + "") + foot);
 
       Transport transport = session.getTransport("smtp");
       transport.connect(host, from, password);
@@ -87,7 +87,7 @@ public class Letter extends Thread {
       mex.printStackTrace();
       System.out.println("не отправил");
     }
-    clearLetter(userId + "");
+    clearTxtFile(userId + "");
   }
 
   /*
