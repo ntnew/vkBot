@@ -15,86 +15,86 @@ import java.util.List;
 import java.util.Properties;
 
 public class VKCore {
-    private VkApiClient vk;
-    private static int ts;
-    private GroupActor actor;
-    private static int maxMsgId = -1;
 
-    public VKCore() throws ClientException, ApiException {
+  private VkApiClient vk;
+  private static int ts;
+  private GroupActor actor;
+  private static int maxMsgId = -1;
 
-        TransportClient transportClient = HttpTransportClient.getInstance();
-        vk = new VkApiClient(transportClient);
+  public VKCore() throws ClientException, ApiException {
 
-        // Загрузка конфигураций
+    TransportClient transportClient = HttpTransportClient.getInstance();
+    vk = new VkApiClient(transportClient);
 
-        Properties prop = new Properties();
-        int groupId;
-        String access_token;
-        try {
-            prop.load(new FileInputStream(VKServer.programPath + VKServer.resourcesPath +"/vkconfig.properties"));
-            groupId = Integer.parseInt(prop.getProperty("groupId"));
-            access_token = prop.getProperty("accessToken");
-            actor = new GroupActor(groupId, access_token);
+    // Загрузка конфигураций
 
-            ts = vk.messages().getLongPollServer(actor).execute().getTs();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Ошибка при загрузке файла конфигурации");
-        }
+    Properties prop = new Properties();
+    int groupId;
+    String access_token;
+    try {
+      prop.load(new FileInputStream(VKServer.programPath + VKServer.resourcesPath + "/vkconfig.properties"));
+      groupId = Integer.parseInt(prop.getProperty("groupId"));
+      access_token = prop.getProperty("accessToken");
+      actor = new GroupActor(groupId, access_token);
+
+      ts = vk.messages().getLongPollServer(actor).execute().getTs();
+    } catch (IOException e) {
+      e.printStackTrace();
+      System.out.println("Ошибка при загрузке файла конфигурации");
     }
+  }
 
 
-    public GroupActor getActor() {
-        return actor;
+  public GroupActor getActor() {
+    return actor;
+  }
+
+  public VkApiClient getVk() {
+    return vk;
+  }
+
+
+  public Message getMessage() throws ClientException, ApiException {
+
+    MessagesGetLongPollHistoryQuery eventsQuery = vk.messages()
+        .getLongPollHistory(actor)
+        .ts(ts);
+    if (maxMsgId > 0) {
+      eventsQuery.maxMsgId(maxMsgId);
     }
-    public VkApiClient getVk() {
-        return vk;
+    List<Message> messages = eventsQuery
+        .execute()
+        .getMessages()
+        .getItems();
+
+    if (!messages.isEmpty()) {
+      try {
+        ts = vk.messages()
+            .getLongPollServer(actor)
+            .execute()
+            .getTs();
+      } catch (ClientException e) {
+        e.printStackTrace();
+      }
     }
-
-
-    public Message getMessage() throws ClientException, ApiException {
-
-
-        MessagesGetLongPollHistoryQuery eventsQuery = vk.messages()
-                .getLongPollHistory(actor)
-                .ts(ts);
-        if (maxMsgId > 0){
-            eventsQuery.maxMsgId(maxMsgId);
-        }
-        List<Message> messages = eventsQuery
-                .execute()
-                .getMessages()
-                .getItems();
-
-        if (!messages.isEmpty()){
-            try {
-                ts =  vk.messages()
-                        .getLongPollServer(actor)
-                        .execute()
-                        .getTs();
-            } catch (ClientException e) {
-                e.printStackTrace();
-            }
-        }
-        if (!messages.isEmpty() && !messages.get(0).isOut()) {
+    if (!messages.isEmpty() && !messages.get(0).isOut()) {
 
                 /*
                 messageId - максимально полученный ID, нужен, чтобы не было ошибки 10 internal server error,
                 который является ограничением в API VK. В случае, если ts слишком старый (больше суток),
                 а max_msg_id не передан, метод может вернуть ошибку 10 (Internal server error).
                  */
-            int messageId = messages.get(0).getId();
-            if (messageId > maxMsgId){
-                maxMsgId = messageId;
-            }
+      int messageId = messages.get(0).getId();
+      if (messageId > maxMsgId) {
+        maxMsgId = messageId;
+      }
 
-            return messages.get(0);
-        }
-
-        return null;
+      return messages.get(0);
     }
 
-    
+    return null;
+  }
+
 
 }
 

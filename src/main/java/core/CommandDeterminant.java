@@ -3,7 +3,7 @@ package core;
 import com.vk.api.sdk.objects.messages.Message;
 import core.commands.Unknown;
 import core.modules.Send;
-import core.modules.SendLetter;
+import core.modules.Letter;
 import vk.VKManager;
 
 import java.util.Collection;
@@ -62,8 +62,8 @@ public class CommandDeterminant {
             new VKManager().sendMessage(getReserveStepMessage(6), message.getFromId(), false);
             new Send().sendKeyboard("keyboardStart", message.getFromId());
             reserveQueue.remove(message.getFromId() + "res6");
-            SendLetter sendLetter = new SendLetter(message.getFromId());
-            sendLetter.start();
+            Letter letter = new Letter(message.getFromId());
+            letter.start();
         } else if (reserveQueue.contains(message.getFromId() + "res6") && message.getText().equals("Нет")) {
             new VKManager().sendMessage("Попробуйте заполнить ещё раз", message.getFromId(), false);
             new Send().sendKeyboard("keyboardStart", message.getFromId());

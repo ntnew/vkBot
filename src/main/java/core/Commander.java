@@ -1,12 +1,7 @@
 package core;
 
 import com.vk.api.sdk.objects.messages.Message;
-import core.modules.Send;
-import core.modules.SendLetter;
-import vk.VKManager;
 
-import static core.commands.ReserveTable.getReserveStepMessage;
-import static core.modules.FileHelper.*;
 import static vk.VKServer.reserveQueue;
 
 public class Commander {
