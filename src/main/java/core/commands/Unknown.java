@@ -10,12 +10,12 @@ import vk.VKManager;
  */
 public class Unknown extends Command {
 
-    public Unknown(String name) {
-        super(name);
-    }
+  public Unknown(String name) {
+    super(name);
+  }
 
-    @Override
-    public void exec(Message message) {
-        new VKManager().sendMessage(FileHelper.readTxtFile("unknown"), message.getFromId(),true);
-    }
+  @Override
+  public void exec(Message message) {
+    new VKManager().sendMessage(FileHelper.readTxtFile("unknown"), message.getFromId(), true);
+  }
 }
