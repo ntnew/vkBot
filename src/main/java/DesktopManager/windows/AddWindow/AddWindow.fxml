@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="DesktopManager.windows.AddWindow.AddWindowController"
+  prefHeight="400.0" prefWidth="600.0">
+  <HBox>
+    <Label>Наименование</Label>
+    <TextField fx:id="nameField"/>
+  </HBox>
+  <HBox>
+    <Label>Токен доступа к группе</Label>
+    <TextField fx:id="accessTokenField"/>
+  </HBox>
+  <HBox>
+    <Label>Id группы</Label>
+    <TextField fx:id="groupIdField"/>
+  </HBox>
+  <HBox>
+    <Label>Почта получателя</Label>
+    <TextField fx:id="emailToField"/>
+  </HBox>
+  <HBox>
+    <Label>Почта отправителя</Label>
+    <TextField fx:id="emailFromField"/>
+  </HBox>
+  <HBox>
+    <Label>Пароль от почты</Label>
+    <TextField fx:id="emailPassField"/>
+  </HBox>
+  <HBox>
+    <Button onAction="#onCreateButtonClick">Создать</Button>
+    <Button onAction="#onCancelButtonClick">Отмена</Button>
+  </HBox>
+</VBox>

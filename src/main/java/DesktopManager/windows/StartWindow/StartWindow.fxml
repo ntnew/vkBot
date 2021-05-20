@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<VBox xmlns="http://javafx.com/javafx"
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="DesktopManager.windows.StartWindow.StartWindowController"
+  prefHeight="400.0" prefWidth="600.0">
+
+  <ScrollPane>
+    <TableView fx:id="botsPane">
+
+    </TableView>
+  </ScrollPane>
+  <HBox>
+    <Button fx:id="addBotButton" onAction="#onAddBotButtonClick">Добавить нового бота</Button>
+  </HBox>
+
+</VBox>
