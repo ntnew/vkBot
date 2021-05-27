@@ -3,8 +3,10 @@ package DesktopManager.system;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -86,11 +88,24 @@ public class WindowHelper {
         stage.setMaximized(false);
       }
       stage.setResizable(resizible);
-      Scene scene = new Scene(fxmlLoader.load());
+      Scene scene = null;
 //TODO сделать картинку
 //      Image imageOk = new Image(WindowHelper.class.getClassLoader().
 //          getResourceAsStream("icons/bars.png"));
 //      stage.getIcons().add(imageOk);
+      if (width == null || height == null) {
+        scene = new Scene(fxmlLoader.load());
+      } else {
+        if (width == 0 && height == 0) {     // maximized
+          Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+          scene = new Scene(fxmlLoader.load(), screenSize.getWidth() - 100d,
+              screenSize.getHeight() - 100d);
+        } else {
+          //TODO МАСШТАБ
+          int scale = 1;
+          scene = new Scene(fxmlLoader.load(), width * scale, height * scale);
+        }
+      }
       stage.setScene(scene);
       return stage;
 

@@ -1,5 +1,6 @@
 package DesktopManager.windows.AddWindow;
 
+import DesktopManager.Entities.Bot;
 import DesktopManager.system.AppWindow;
 import DesktopManager.system.WindowHelper;
 import javafx.fxml.FXMLLoader;
@@ -32,7 +33,7 @@ public class AddWindow implements AppWindow<AddWindowController> {
    */
   public AddWindow() {
     FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH));
-    stage = WindowHelper.getStage(loader, TITLE, 800, 600, true);
+    stage = WindowHelper.getStage(loader, TITLE, 800, 400, true);
     controller = loader.getController();
   }
 

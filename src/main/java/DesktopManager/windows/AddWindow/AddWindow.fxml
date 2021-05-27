@@ -1,41 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx"
   xmlns:fx="http://javafx.com/fxml"
   fx:controller="DesktopManager.windows.AddWindow.AddWindowController"
-  prefHeight="400.0" prefWidth="600.0">
+  prefHeight="400.0" prefWidth="600.0"
+  fx:id="content">
+
+  <padding>
+    <Insets bottom="10" left="10" right="10" top="10"/>
+  </padding>
   <HBox>
-    <Label>Наименование</Label>
-    <TextField fx:id="nameField"/>
+    <padding>
+      <Insets bottom="5" left="5" right="5" top="5"/>
+    </padding>
+    <Label prefWidth="200">Наименование</Label>
+    <TextField prefWidth="500" fx:id="nameField"/>
   </HBox>
   <HBox>
-    <Label>Токен доступа к группе</Label>
-    <TextField fx:id="accessTokenField"/>
+    <padding>
+      <Insets bottom="5" left="5" right="5" top="5"/>
+    </padding>
+    <Label prefWidth="200">Описание</Label>
+    <TextField fx:id="descriptionField" prefWidth="500"/>
   </HBox>
   <HBox>
-    <Label>Id группы</Label>
-    <TextField fx:id="groupIdField"/>
+    <padding>
+      <Insets bottom="5" left="5" right="5" top="5"/>
+    </padding>
+    <Label prefWidth="200">Токен доступа к группе</Label>
+    <TextField fx:id="accessTokenField" prefWidth="500"/>
   </HBox>
   <HBox>
-    <Label>Почта получателя</Label>
-    <TextField fx:id="emailToField"/>
+    <padding>
+      <Insets bottom="5" left="5" right="5" top="5"/>
+    </padding>
+    <Label prefWidth="200">Id группы</Label>
+    <TextField fx:id="groupIdField" prefWidth="500"/>
   </HBox>
   <HBox>
-    <Label>Почта отправителя</Label>
-    <TextField fx:id="emailFromField"/>
+    <padding>
+      <Insets bottom="5" left="5" right="5" top="5"/>
+    </padding>
+    <Label prefWidth="200">Почта получателя</Label>
+    <TextField fx:id="emailToField" prefWidth="500"/>
   </HBox>
   <HBox>
-    <Label>Пароль от почты</Label>
-    <TextField fx:id="emailPassField"/>
+    <padding>
+      <Insets bottom="5" left="5" right="5" top="5"/>
+    </padding>
+    <Label prefWidth="200">Почта отправителя</Label>
+    <TextField fx:id="emailFromField" prefWidth="500"/>
   </HBox>
   <HBox>
-    <Button onAction="#onCreateButtonClick">Создать</Button>
-    <Button onAction="#onCancelButtonClick">Отмена</Button>
+    <padding>
+      <Insets bottom="5" left="5" right="5" top="5"/>
+    </padding>
+    <Label prefWidth="200">Пароль от почты</Label>
+    <TextField fx:id="emailPassField" prefWidth="500"/>
+  </HBox>
+  <HBox alignment="CENTER">
+    <padding>
+      <Insets bottom="10" left="10" right="50" top="10"/>
+    </padding>
+    <Button prefWidth="150" onAction="#onCreateButtonClick">Создать</Button>
+    <Button prefWidth="150" onAction="#onCancelButtonClick">Отмена</Button>
   </HBox>
 </VBox>

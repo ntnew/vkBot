@@ -33,8 +33,9 @@ public class StartWindow implements AppWindow<StartWindowController> {
    */
   public StartWindow() {
     FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_PATH));
-    stage = WindowHelper.getStage(loader, TITLE, 1000, 800, true);
+    stage = WindowHelper.getStage(loader, TITLE, 800, 600, true);
     controller = loader.getController();
+    controller.configure();
   }
 
   @Override
