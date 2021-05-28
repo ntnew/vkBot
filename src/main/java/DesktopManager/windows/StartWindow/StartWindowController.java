@@ -18,6 +18,7 @@ public class StartWindowController {
   public Button addBotButton;
   public TableView<BotViewModel> botsTable;
   public VBox content;
+  public Button controlButton;
 
   public void configure() {
     botsTable.setPrefWidth(content.getWidth() / 1.8);

@@ -7,6 +7,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Button;
 import lombok.Data;
 
 public class BotViewModel {
@@ -18,6 +19,7 @@ public class BotViewModel {
   SimpleObjectProperty<BotStatus> botStatus = new SimpleObjectProperty<>(BotStatus.DISABLE);
 
   ObjectProperty<BotStatus> botStatusProperty = new SimpleObjectProperty<>();
+  ObjectProperty<Button> buttonControl = new SimpleObjectProperty<>();
 
   public BotViewModel(Bot bot) {
     this.bot = bot;
