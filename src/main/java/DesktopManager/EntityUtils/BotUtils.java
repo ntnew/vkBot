@@ -13,11 +13,11 @@ import java.util.List;
 
 public class BotUtils {
 
-  static String botVariablePath = System.getProperty("user.dir") + "/var";
+  static String botVariableFolder = System.getProperty("user.dir") + "/var";
 
   public static void initializeBotSettings(Bot bot) {
     try {
-      File file = new File(String.format("%1$s/%2$s", botVariablePath, bot.getName()));
+      File file = new File(String.format("%1$s/%2$s", botVariableFolder, bot.getName()));
       if (file.createNewFile()) {
         System.out.println("File created");
       } else {
@@ -34,7 +34,7 @@ public class BotUtils {
   }
 
   public static List<Bot> getLocalBotSettings() throws IOException {
-    File folder = new File(botVariablePath);
+    File folder = new File(botVariableFolder);
     List<Bot> bots = new ArrayList<>();
     for (final File fileEntry : folder.listFiles()) {
       List<String> lines = Files.readAllLines(Paths.get(fileEntry.getAbsolutePath()), StandardCharsets.UTF_8);
